@@ -1,0 +1,17 @@
+.good {
+    color : white;
+    text-align: center;
+    display: block;
+    font-family: 'Calibri';
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+.who {
+    color : black;
+    text-align: center;
+    display: block;
+    font-family: 'Calibri';
+    padding: 10px;
+    letter-spacing: 2px;
+}
