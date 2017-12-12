@@ -11861,10 +11861,6 @@ var _actions = __webpack_require__(90);
 
 var actions = _interopRequireWildcard(_actions);
 
-var _profile = __webpack_require__(32);
-
-var _profile2 = _interopRequireDefault(_profile);
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -11899,55 +11895,9 @@ var Cards = function (_Component) {
                         } });
                 }),
                 _react2.default.createElement('div', { className: 'col-lg-2' }),
-                _react2.default.createElement(
-                    _Modal2.default,
-                    { isOpen: this.props.modalStatus, onClose: function onClose() {
-                            return _this2.props.closeModal();
-                        } },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'row' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-xs-3' },
-                            _react2.default.createElement('img', { src: _profile2.default, alt: 'John', style: { width: '100%' } })
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-xs-8' },
-                            _react2.default.createElement(
-                                'h1',
-                                null,
-                                this.props.modalData.name
-                            ),
-                            _react2.default.createElement(
-                                'p',
-                                null,
-                                'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).'
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { style: { margin: '20px 0' } },
-                                _react2.default.createElement('a', { href: '#', className: 'fa fa-facebook' }),
-                                _react2.default.createElement('a', { href: '#', className: 'fa fa-twitter' }),
-                                _react2.default.createElement('a', { href: '#', className: 'fa fa-google' }),
-                                _react2.default.createElement('a', { href: '#', className: 'fa fa-linkedin' })
-                            ),
-                            _react2.default.createElement(
-                                'p',
-                                null,
-                                _react2.default.createElement(
-                                    'button',
-                                    { onClick: function onClick() {
-                                            return _this2.props.closeModal();
-                                        } },
-                                    'Close'
-                                )
-                            )
-                        ),
-                        _react2.default.createElement('div', { className: 'col-xs-1' })
-                    )
-                )
+                _react2.default.createElement(_Modal2.default, { isOpen: this.props.modalStatus, close: function close() {
+                        return _this2.props.closeModal();
+                    }, data: this.props.modalData })
             );
         }
     }]);
@@ -12090,6 +12040,10 @@ var _react2 = _interopRequireDefault(_react);
 
 __webpack_require__(88);
 
+var _profile = __webpack_require__(32);
+
+var _profile2 = _interopRequireDefault(_profile);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -12110,8 +12064,6 @@ var Modal = function (_Component) {
     _createClass(Modal, [{
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
             if (this.props.isOpen === false) return null;
 
             var modalStyle = {
@@ -12139,12 +12091,49 @@ var Modal = function (_Component) {
                 _react2.default.createElement(
                     'div',
                     { style: modalStyle },
-                    this.props.children
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'row' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'col-xs-3' },
+                            _react2.default.createElement('img', { src: _profile2.default, alt: 'John', style: { width: '100%' } })
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'col-xs-8' },
+                            _react2.default.createElement(
+                                'h1',
+                                null,
+                                this.props.data.name
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                null,
+                                'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).'
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { style: { margin: '20px 0' } },
+                                _react2.default.createElement('a', { href: '#', className: 'fa fa-facebook' }),
+                                _react2.default.createElement('a', { href: '#', className: 'fa fa-twitter' }),
+                                _react2.default.createElement('a', { href: '#', className: 'fa fa-google' }),
+                                _react2.default.createElement('a', { href: '#', className: 'fa fa-linkedin' })
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                null,
+                                _react2.default.createElement(
+                                    'button',
+                                    { onClick: this.props.close },
+                                    'Close'
+                                )
+                            )
+                        ),
+                        _react2.default.createElement('div', { className: 'col-xs-1' })
+                    )
                 ),
-                _react2.default.createElement('div', { style: backdropStyle, onClick: function onClick(e) {
-                        return _this2.close(e);
-                    } }),
-                '}'
+                _react2.default.createElement('div', { style: backdropStyle, onClick: this.props.close })
             );
         }
     }, {
