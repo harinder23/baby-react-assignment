@@ -20,7 +20,7 @@ class Cards extends Component {
             <div className="row">
                 <div className="col-xs-2"></div>
                 {this.props.cardt.map(card => (
-                    <Card key={card.id} name={card.name} designation={card.designation} clicked={() => this.openModal()} />)
+                    <Card key={card.id} name={card.name} designation={card.designation} clicked={() => this.props.openModal(card.id)} />)
                 )
                 }
                 <div className="col-xs-2"></div>
@@ -49,7 +49,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        openModal: dispatch(actions.modalOpen),
+        openModal: (id) => dispatch(actions.modalOpen(id)),
     }
 }
 

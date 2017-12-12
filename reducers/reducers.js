@@ -1,4 +1,6 @@
 import React from 'react';
+import * as actionTypes from '../actions/actionTypes';
+
 
 const initialState = {
     cardList: [
@@ -11,6 +13,12 @@ const initialState = {
 };
 
 const reducers = (state = initialState, action) => {
+    switch(action.type){
+        case actionTypes.OPEN_MODAL: 
+        return {
+            ...state, isModalOpen : [...state.isModalOpen, action.payload]
+        };
+    }
     return state;
 }
 export default reducers;

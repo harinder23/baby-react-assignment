@@ -11441,11 +11441,21 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _actionTypes = __webpack_require__(93);
+
+var actionTypes = _interopRequireWildcard(_actionTypes);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var initialState = {
     cardList: [{ id: 1, name: 'ANTON PETROV', designation: 'General Menager' }, { id: 2, name: 'KIRL DONCHEV', designation: 'Design Master' }, { id: 3, name: 'ILIAN BONEV', designation: 'Developer Ninja' }, { id: 4, name: 'DONI STAMOV', designation: 'Seo Guru' }],
@@ -11456,6 +11466,11 @@ var reducers = function reducers() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
     var action = arguments[1];
 
+    switch (action.type) {
+        case actionTypes.OPEN_MODAL:
+            return _extends({}, state, { isModalOpen: [].concat(_toConsumableArray(state.isModalOpen), [action.payload])
+            });
+    }
     return state;
 };
 exports.default = reducers;
@@ -11489,7 +11504,7 @@ var _Cards = __webpack_require__(81);
 
 var _Cards2 = _interopRequireDefault(_Cards);
 
-var _Body = __webpack_require__(89);
+var _Body = __webpack_require__(90);
 
 var _Body2 = _interopRequireDefault(_Body);
 
@@ -11819,6 +11834,12 @@ var _Modal2 = _interopRequireDefault(_Modal);
 
 var _reactRedux = __webpack_require__(19);
 
+var _actions = __webpack_require__(89);
+
+var actions = _interopRequireWildcard(_actions);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -11857,7 +11878,7 @@ var Cards = function (_Component) {
                 _react2.default.createElement('div', { className: 'col-xs-2' }),
                 this.props.cardt.map(function (card) {
                     return _react2.default.createElement(_Card2.default, { key: card.id, name: card.name, designation: card.designation, clicked: function clicked() {
-                            return _this2.openModal();
+                            return _this2.props.openModal(card.id);
                         } });
                 }),
                 _react2.default.createElement('div', { className: 'col-xs-2' }),
@@ -11911,7 +11932,11 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-    return {};
+    return {
+        openModal: function openModal(id) {
+            return dispatch(actions.modalOpen(id));
+        }
+    };
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Cards);
@@ -12166,12 +12191,37 @@ exports.push([module.i, "\r\n  .backdrop {\r\n    position: absolute;\r\n    top
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.modalOpen = undefined;
+
+var _actionTypes = __webpack_require__(93);
+
+var actionTypes = _interopRequireWildcard(_actionTypes);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var modalOpen = exports.modalOpen = function modalOpen(id) {
+
+    return function (dispatch) {
+        dispatch({ type: actionTypes.OPEN_MODAL, payload: id });
+    };
+};
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(90);
+__webpack_require__(91);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12207,13 +12257,13 @@ var Body = function Body() {
 exports.default = Body;
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(91);
+var content = __webpack_require__(92);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -12238,7 +12288,7 @@ if(false) {
 }
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(5)(undefined);
@@ -12250,6 +12300,18 @@ exports.push([module.i, ".good {\r\n    color : white;\r\n    text-align: center
 
 // exports
 
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var OPEN_MODAL = exports.OPEN_MODAL = 'OPEN_MODAL';
 
 /***/ })
 /******/ ]);
