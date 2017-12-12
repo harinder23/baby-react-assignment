@@ -11455,8 +11455,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 var initialState = {
     cardList: [{ id: 1, name: 'ANTON PETROV', designation: 'General Menager' }, { id: 2, name: 'KIRL DONCHEV', designation: 'Design Master' }, { id: 3, name: 'ILIAN BONEV', designation: 'Developer Ninja' }, { id: 4, name: 'DONI STAMOV', designation: 'Seo Guru' }],
     isModalOpen: false
@@ -11468,10 +11466,16 @@ var reducers = function reducers() {
 
     switch (action.type) {
         case actionTypes.OPEN_MODAL:
-            return _extends({}, state, { isModalOpen: [].concat(_toConsumableArray(state.isModalOpen), [action.payload])
+            console.log(state);
+            return _extends({}, state, { isModalOpen: true
             });
+        case actionTypes.CLOSE_MODAL:
+            console.log(state);
+            return _extends({}, state, { isModalOpen: false
+            });
+        default:
+            return state;
     }
-    return state;
 };
 exports.default = reducers;
 
@@ -11858,16 +11862,6 @@ var Cards = function (_Component) {
     }
 
     _createClass(Cards, [{
-        key: 'openModal',
-        value: function openModal() {
-            this.setState({ isModalOpen: true });
-        }
-    }, {
-        key: 'closeModal',
-        value: function closeModal() {
-            this.setState({ isModalOpen: false });
-        }
-    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
@@ -11885,7 +11879,7 @@ var Cards = function (_Component) {
                 _react2.default.createElement(
                     _Modal2.default,
                     { isOpen: this.props.modalStatus, onClose: function onClose() {
-                            return _this2.closeModal();
+                            return _this2.props.closeModal();
                         } },
                     _react2.default.createElement(
                         'h1',
@@ -11911,7 +11905,7 @@ var Cards = function (_Component) {
                         _react2.default.createElement(
                             'button',
                             { onClick: function onClick() {
-                                    return _this2.closeModal();
+                                    return _this2.props.closeModal();
                                 } },
                             'Close'
                         )
@@ -11935,6 +11929,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     return {
         openModal: function openModal(id) {
             return dispatch(actions.modalOpen(id));
+        },
+        closeModal: function closeModal() {
+            return dispatch(actions.modalClose());
         }
     };
 };
@@ -12191,7 +12188,7 @@ exports.push([module.i, "\r\n  .backdrop {\r\n    position: absolute;\r\n    top
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.modalOpen = undefined;
+exports.modalClose = exports.modalOpen = undefined;
 
 var _actionTypes = __webpack_require__(93);
 
@@ -12203,6 +12200,12 @@ var modalOpen = exports.modalOpen = function modalOpen(id) {
 
     return function (dispatch) {
         dispatch({ type: actionTypes.OPEN_MODAL, payload: id });
+    };
+};
+
+var modalClose = exports.modalClose = function modalClose() {
+    return function (dispatch) {
+        dispatch({ type: actionTypes.CLOSE_MODAL });
     };
 };
 
@@ -12312,6 +12315,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var OPEN_MODAL = exports.OPEN_MODAL = 'OPEN_MODAL';
+var CLOSE_MODAL = exports.CLOSE_MODAL = 'CLOSE_MODAL';
 
 /***/ })
 /******/ ]);

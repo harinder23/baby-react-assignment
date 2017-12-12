@@ -6,15 +6,6 @@ import * as actions from '../../../actions/actions';
 
 class Cards extends Component {
 
-    openModal() {
-        this.setState({ isModalOpen: true })
-    }
-
-    closeModal() {
-        this.setState({ isModalOpen: false })
-    }
-
-
     render() {
         return (
             <div className="row">
@@ -24,7 +15,7 @@ class Cards extends Component {
                 )
                 }
                 <div className="col-xs-2"></div>
-                <Modal isOpen={this.props.modalStatus} onClose={() => this.closeModal()}>
+                <Modal isOpen={this.props.modalStatus} onClose={() => this.props.closeModal()}>
                     <h1>KIRL DONCHEV</h1>
                     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
                     <div style={{ margin: '20px 0' }}>
@@ -33,7 +24,7 @@ class Cards extends Component {
                         <a href="#" className="fa fa-google"></a>
                         <a href="#" className="fa fa-linkedin"></a>
                     </div>
-                    <p><button onClick={() => this.closeModal()}>Close</button></p>
+                    <p><button onClick={() => this.props.closeModal()}>Close</button></p>
                 </Modal>
             </div>
         );
@@ -50,6 +41,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         openModal: (id) => dispatch(actions.modalOpen(id)),
+        closeModal: () => dispatch(actions.modalClose())
     }
 }
 
