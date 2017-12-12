@@ -9,19 +9,19 @@ const initialState = {
         { id: 4, name: 'DONI STAMOV', designation: 'Seo Guru' }
     ],
     isModalOpen: false,
+    opened : {}
 };
 
 const reducers = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.OPEN_MODAL:
-        console.log(state);
             return {
-                ...state, isModalOpen: true
+                ...state, isModalOpen: true, opened : {...state.cardList[action.payload]}
             };
         case actionTypes.CLOSE_MODAL:
         console.log(state);
             return {
-                ...state, isModalOpen: false
+                ...state, isModalOpen: false, opened : {}
             }
         default:
             return state;

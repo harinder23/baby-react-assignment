@@ -11457,7 +11457,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var initialState = {
     cardList: [{ id: 1, name: 'ANTON PETROV', designation: 'General Menager' }, { id: 2, name: 'KIRL DONCHEV', designation: 'Design Master' }, { id: 3, name: 'ILIAN BONEV', designation: 'Developer Ninja' }, { id: 4, name: 'DONI STAMOV', designation: 'Seo Guru' }],
-    isModalOpen: false
+    isModalOpen: false,
+    opened: {}
 };
 
 var reducers = function reducers() {
@@ -11466,12 +11467,11 @@ var reducers = function reducers() {
 
     switch (action.type) {
         case actionTypes.OPEN_MODAL:
-            console.log(state);
-            return _extends({}, state, { isModalOpen: true
+            return _extends({}, state, { isModalOpen: true, opened: _extends({}, state.cardList[action.payload])
             });
         case actionTypes.CLOSE_MODAL:
             console.log(state);
-            return _extends({}, state, { isModalOpen: false
+            return _extends({}, state, { isModalOpen: false, opened: {}
             });
         default:
             return state;
@@ -11842,6 +11842,10 @@ var _actions = __webpack_require__(89);
 
 var actions = _interopRequireWildcard(_actions);
 
+var _profile = __webpack_require__(85);
+
+var _profile2 = _interopRequireDefault(_profile);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -11870,9 +11874,9 @@ var Cards = function (_Component) {
                 'div',
                 { className: 'row' },
                 _react2.default.createElement('div', { className: 'col-xs-2' }),
-                this.props.cardt.map(function (card) {
+                this.props.cardt.map(function (card, index) {
                     return _react2.default.createElement(_Card2.default, { key: card.id, name: card.name, designation: card.designation, clicked: function clicked() {
-                            return _this2.props.openModal(card.id);
+                            return _this2.props.openModal(index);
                         } });
                 }),
                 _react2.default.createElement('div', { className: 'col-xs-2' }),
@@ -11882,33 +11886,47 @@ var Cards = function (_Component) {
                             return _this2.props.closeModal();
                         } },
                     _react2.default.createElement(
-                        'h1',
-                        null,
-                        'KIRL DONCHEV'
-                    ),
-                    _react2.default.createElement(
-                        'p',
-                        null,
-                        'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).'
-                    ),
-                    _react2.default.createElement(
                         'div',
-                        { style: { margin: '20px 0' } },
-                        _react2.default.createElement('a', { href: '#', className: 'fa fa-facebook' }),
-                        _react2.default.createElement('a', { href: '#', className: 'fa fa-twitter' }),
-                        _react2.default.createElement('a', { href: '#', className: 'fa fa-google' }),
-                        _react2.default.createElement('a', { href: '#', className: 'fa fa-linkedin' })
-                    ),
-                    _react2.default.createElement(
-                        'p',
-                        null,
+                        { className: 'row' },
                         _react2.default.createElement(
-                            'button',
-                            { onClick: function onClick() {
-                                    return _this2.props.closeModal();
-                                } },
-                            'Close'
-                        )
+                            'div',
+                            { className: 'col-xs-3' },
+                            _react2.default.createElement('img', { src: _profile2.default, alt: 'John', style: { width: '100%' } })
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'col-xs-8' },
+                            _react2.default.createElement(
+                                'h1',
+                                null,
+                                this.props.modalData.name
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                null,
+                                'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).'
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { style: { margin: '20px 0' } },
+                                _react2.default.createElement('a', { href: '#', className: 'fa fa-facebook' }),
+                                _react2.default.createElement('a', { href: '#', className: 'fa fa-twitter' }),
+                                _react2.default.createElement('a', { href: '#', className: 'fa fa-google' }),
+                                _react2.default.createElement('a', { href: '#', className: 'fa fa-linkedin' })
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                null,
+                                _react2.default.createElement(
+                                    'button',
+                                    { onClick: function onClick() {
+                                            return _this2.props.closeModal();
+                                        } },
+                                    'Close'
+                                )
+                            )
+                        ),
+                        _react2.default.createElement('div', { className: 'col-xs-1' })
                     )
                 )
             );
@@ -11921,7 +11939,8 @@ var Cards = function (_Component) {
 var mapStateToProps = function mapStateToProps(state) {
     return {
         cardt: state.cardList,
-        modalStatus: state.isModalOpen
+        modalStatus: state.isModalOpen,
+        modalData: state.opened
     };
 };
 
