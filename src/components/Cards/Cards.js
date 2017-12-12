@@ -1,18 +1,10 @@
 import React, { Component } from 'react';
 import Card from './Card/Card';
 import Modal from '../Modal/Modal';
+import {connect} from 'react-redux';
+import * as actions from '../../../actions/actions';
 
 class Cards extends Component {
-
-    state = {
-        cardList: [
-            { id: 1, name: 'ANTON PETROV', designation: 'General Menager' },
-            { id: 2, name: 'KIRL DONCHEV', designation: 'Design Master' },
-            { id: 3, name: 'ILIAN BONEV', designation: 'Developer Ninja' },
-            { id: 4, name: 'DONI STAMOV', designation: 'Seo Guru' }
-        ],
-        isModalOpen: false,
-    };
 
     openModal() {
         this.setState({ isModalOpen: true })
@@ -27,12 +19,12 @@ class Cards extends Component {
         return (
             <div className="row">
                 <div className="col-xs-2"></div>
-                {this.state.cardList.map(card => (
+                {this.props.cardt.map(card => (
                     <Card key={card.id} name={card.name} designation={card.designation} clicked={() => this.openModal()} />)
                 )
                 }
                 <div className="col-xs-2"></div>
-                <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
+                <Modal isOpen={this.props.modalStatus} onClose={() => this.closeModal()}>
                     <h1>KIRL DONCHEV</h1>
                     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
                     <div style={{ margin: '20px 0' }}>
@@ -48,4 +40,17 @@ class Cards extends Component {
     }
 }
 
-export default Cards;
+const mapStateToProps = (state) => {
+    return {
+        cardt: state.cardList,
+        modalStatus : state.isModalOpen
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        openModal: dispatch(actions.modalOpen),
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Cards);
