@@ -10,12 +10,12 @@ class Cards extends Component {
     render() {
         return (
             <div className="row">
-                <div className="col-xs-2"></div>
+                <div className="col-lg-2"></div>
                 {this.props.cardt.map((card,index) => (
                     <Card key={card.id} name={card.name} designation={card.designation} clicked={() => this.props.openModal(index)} />)
                 )
                 }
-                <div className="col-xs-2"></div>
+                <div className="col-lg-2"></div>
                 <Modal isOpen={this.props.modalStatus} onClose={() => this.props.closeModal()}>
                     <div className="row">
                         <div className="col-xs-3">

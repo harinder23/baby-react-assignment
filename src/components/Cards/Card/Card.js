@@ -4,7 +4,7 @@ import profile from '../../../../public/profile.png';
 
 const Card = (props) => {
     return (
-        <div className="card col-xs-2" onClick={props.clicked}>
+        <div className="card col-lg-2" onClick={props.clicked}>
             <img src={profile} alt="John" style={{ width: '70%' }} />
             <h1>{props.name}</h1>
             <p className="title">{props.designation}</p>

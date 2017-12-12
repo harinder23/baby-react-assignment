@@ -78,3 +78,10 @@
     color: white;
   }
   
+  @media (max-width:340px) {
+    .card {
+        width:100%;
+        display: block;
+        margin:10px 0px;
+    }
+}

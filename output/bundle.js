@@ -473,99 +473,6 @@ module.exports = invariant;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
-
-var emptyObject = {};
-
-if (process.env.NODE_ENV !== 'production') {
-  Object.freeze(emptyObject);
-}
-
-module.exports = emptyObject;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
-
-var emptyFunction = __webpack_require__(2);
-
-/**
- * Similar to invariant but only logs a warning if the condition is not met.
- * This can be used to log issues in development environments in critical
- * paths. Removing the logging code for production environments will keep the
- * same logic and follow the same code paths.
- */
-
-var warning = emptyFunction;
-
-if (process.env.NODE_ENV !== 'production') {
-  var printWarning = function printWarning(format) {
-    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    var argIndex = 0;
-    var message = 'Warning: ' + format.replace(/%s/g, function () {
-      return args[argIndex++];
-    });
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-
-  warning = function warning(condition, format) {
-    if (format === undefined) {
-      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
-    }
-
-    if (format.indexOf('Failed Composite propType: ') === 0) {
-      return; // Ignore CompositeComponent proptype check.
-    }
-
-    if (!condition) {
-      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-        args[_key2 - 2] = arguments[_key2];
-      }
-
-      printWarning.apply(undefined, [format].concat(args));
-    }
-  };
-}
-
-module.exports = warning;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 
 
 /*
@@ -644,7 +551,7 @@ function toComment(sourceMap) {
 }
 
 /***/ }),
-/* 8 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -1016,6 +923,99 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+
+
+var emptyObject = {};
+
+if (process.env.NODE_ENV !== 'production') {
+  Object.freeze(emptyObject);
+}
+
+module.exports = emptyObject;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+
+
+var emptyFunction = __webpack_require__(2);
+
+/**
+ * Similar to invariant but only logs a warning if the condition is not met.
+ * This can be used to log issues in development environments in critical
+ * paths. Removing the logging code for production environments will keep the
+ * same logic and follow the same code paths.
+ */
+
+var warning = emptyFunction;
+
+if (process.env.NODE_ENV !== 'production') {
+  var printWarning = function printWarning(format) {
+    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    var argIndex = 0;
+    var message = 'Warning: ' + format.replace(/%s/g, function () {
+      return args[argIndex++];
+    });
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+
+  warning = function warning(condition, format) {
+    if (format === undefined) {
+      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+    }
+
+    if (format.indexOf('Failed Composite propType: ') === 0) {
+      return; // Ignore CompositeComponent proptype check.
+    }
+
+    if (!condition) {
+      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+        args[_key2 - 2] = arguments[_key2];
+      }
+
+      printWarning.apply(undefined, [format].concat(args));
+    }
+  };
+}
+
+module.exports = warning;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1033,7 +1033,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(4);
-  var warning = __webpack_require__(6);
+  var warning = __webpack_require__(8);
   var ReactPropTypesSecret = __webpack_require__(10);
   var loggedTypeFailures = {};
 }
@@ -2616,7 +2616,7 @@ _reactDom2.default.render(app, document.getElementById('root'));
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var m = __webpack_require__(3),
-    n = __webpack_require__(5),
+    n = __webpack_require__(7),
     p = __webpack_require__(2),
     q = "function" === typeof Symbol && Symbol["for"],
     r = q ? Symbol["for"]("react.element") : 60103,
@@ -2749,9 +2749,9 @@ if (process.env.NODE_ENV !== "production") {
     'use strict';
 
     var _assign = __webpack_require__(3);
-    var emptyObject = __webpack_require__(5);
+    var emptyObject = __webpack_require__(7);
     var invariant = __webpack_require__(4);
-    var warning = __webpack_require__(6);
+    var warning = __webpack_require__(8);
     var emptyFunction = __webpack_require__(2);
     var checkPropTypes = __webpack_require__(9);
 
@@ -4158,7 +4158,7 @@ var aa = __webpack_require__(1),
     ea = __webpack_require__(16),
     fa = __webpack_require__(17),
     ia = __webpack_require__(18),
-    D = __webpack_require__(5);
+    D = __webpack_require__(7);
 function E(a) {
   for (var b = arguments.length - 1, c = "Minified React error #" + a + "; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d" + a, d = 0; d < b; d++) {
     c += "\x26args[]\x3d" + encodeURIComponent(arguments[d + 1]);
@@ -6196,7 +6196,7 @@ module.exports = isNode;
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};if(process.env.NODE_ENV!=="production"){(function(){'use strict';var React=__webpack_require__(1);var invariant=__webpack_require__(4);var warning=__webpack_require__(6);var ExecutionEnvironment=__webpack_require__(13);var _assign=__webpack_require__(3);var emptyFunction=__webpack_require__(2);var EventListener=__webpack_require__(14);var getActiveElement=__webpack_require__(15);var shallowEqual=__webpack_require__(16);var containsNode=__webpack_require__(17);var focusNode=__webpack_require__(18);var emptyObject=__webpack_require__(5);var checkPropTypes=__webpack_require__(9);var hyphenateStyleName=__webpack_require__(41);var camelizeStyleName=__webpack_require__(43);/**
+ */var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};if(process.env.NODE_ENV!=="production"){(function(){'use strict';var React=__webpack_require__(1);var invariant=__webpack_require__(4);var warning=__webpack_require__(8);var ExecutionEnvironment=__webpack_require__(13);var _assign=__webpack_require__(3);var emptyFunction=__webpack_require__(2);var EventListener=__webpack_require__(14);var getActiveElement=__webpack_require__(15);var shallowEqual=__webpack_require__(16);var containsNode=__webpack_require__(17);var focusNode=__webpack_require__(18);var emptyObject=__webpack_require__(7);var checkPropTypes=__webpack_require__(9);var hyphenateStyleName=__webpack_require__(41);var camelizeStyleName=__webpack_require__(43);/**
  * WARNING: DO NOT manually require this module.
  * This is a replacement for `invariant(...)` used by the error code system
  * and will _only_ be required by the corresponding babel pass.
@@ -9452,7 +9452,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var emptyFunction = __webpack_require__(2);
 var invariant = __webpack_require__(4);
-var warning = __webpack_require__(6);
+var warning = __webpack_require__(8);
 var assign = __webpack_require__(3);
 
 var ReactPropTypesSecret = __webpack_require__(10);
@@ -11581,7 +11581,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(8)(content, options);
+var update = __webpack_require__(6)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -11601,7 +11601,7 @@ if(false) {
 /* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(7)(undefined);
+exports = module.exports = __webpack_require__(5)(undefined);
 // imports
 
 
@@ -11721,7 +11721,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(8)(content, options);
+var update = __webpack_require__(6)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -11741,7 +11741,7 @@ if(false) {
 /* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(7)(undefined);
+exports = module.exports = __webpack_require__(5)(undefined);
 // imports
 
 
@@ -11892,13 +11892,13 @@ var Cards = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'row' },
-                _react2.default.createElement('div', { className: 'col-xs-2' }),
+                _react2.default.createElement('div', { className: 'col-lg-2' }),
                 this.props.cardt.map(function (card, index) {
                     return _react2.default.createElement(_Card2.default, { key: card.id, name: card.name, designation: card.designation, clicked: function clicked() {
                             return _this2.props.openModal(index);
                         } });
                 }),
-                _react2.default.createElement('div', { className: 'col-xs-2' }),
+                _react2.default.createElement('div', { className: 'col-lg-2' }),
                 _react2.default.createElement(
                     _Modal2.default,
                     { isOpen: this.props.modalStatus, onClose: function onClose() {
@@ -12002,7 +12002,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Card = function Card(props) {
     return _react2.default.createElement(
         'div',
-        { className: 'card col-xs-2', onClick: props.clicked },
+        { className: 'card col-lg-2', onClick: props.clicked },
         _react2.default.createElement('img', { src: _profile2.default, alt: 'John', style: { width: '70%' } }),
         _react2.default.createElement(
             'h1',
@@ -12041,7 +12041,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(8)(content, options);
+var update = __webpack_require__(6)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -12061,12 +12061,12 @@ if(false) {
 /* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(7)(undefined);
+exports = module.exports = __webpack_require__(5)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, ".card {\r\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);\r\n    max-width: 200px;\r\n    margin: auto;\r\n    text-align: center;\r\n    font-family: arial;\r\n  }\r\n\r\n  h1 {\r\n    color:#d3b6cc;\r\n    font-size: 18px;\r\n  }\r\n\r\n  .title {\r\n    color:#A8C372;\r\n    font-size: 14px;\r\n  }\r\n  \r\n  button {\r\n    border: none;\r\n    outline: 0;\r\n    display: inline-block;\r\n    padding: 8px;\r\n    color: white;\r\n    background-color: #000;\r\n    text-align: center;\r\n    cursor: pointer;\r\n    width: 100%;\r\n    font-size: 18px;\r\n  }\r\n  \r\n  a {\r\n    text-decoration: none;\r\n    font-size: 22px;\r\n    color: black;\r\n  }\r\n  \r\n  button:hover, a:hover {\r\n    opacity: 0.7;\r\n  }\r\n\r\n  .card:hover {\r\n    opacity: 0.8;\r\n    box-shadow: 0 4px 8px 0 rgba(247, 9, 9, 0.753);\r\n  }\r\n\r\n  .fa {\r\n    padding: 10px;\r\n    font-size: 15px;\r\n    width: 10px;\r\n    text-align: center;\r\n    text-decoration: none;\r\n    margin: 2px 2px;\r\n    border-radius: 50%;\r\n  }\r\n  \r\n  .fa:hover {\r\n      opacity: 0.7;\r\n  }\r\n  \r\n  .fa-facebook {\r\n    background: #3B5998;\r\n    color: white;\r\n  }\r\n  \r\n  .fa-twitter {\r\n    background: #55ACEE;\r\n    color: white;\r\n  }\r\n  \r\n  .fa-google {\r\n    background: #dd4b39;\r\n    color: white;\r\n  }\r\n  \r\n  .fa-linkedin {\r\n    background: #007bb5;\r\n    color: white;\r\n  }\r\n  ", ""]);
+exports.push([module.i, ".card {\r\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);\r\n    max-width: 200px;\r\n    margin: auto;\r\n    text-align: center;\r\n    font-family: arial;\r\n  }\r\n\r\n  h1 {\r\n    color:#d3b6cc;\r\n    font-size: 18px;\r\n  }\r\n\r\n  .title {\r\n    color:#A8C372;\r\n    font-size: 14px;\r\n  }\r\n  \r\n  button {\r\n    border: none;\r\n    outline: 0;\r\n    display: inline-block;\r\n    padding: 8px;\r\n    color: white;\r\n    background-color: #000;\r\n    text-align: center;\r\n    cursor: pointer;\r\n    width: 100%;\r\n    font-size: 18px;\r\n  }\r\n  \r\n  a {\r\n    text-decoration: none;\r\n    font-size: 22px;\r\n    color: black;\r\n  }\r\n  \r\n  button:hover, a:hover {\r\n    opacity: 0.7;\r\n  }\r\n\r\n  .card:hover {\r\n    opacity: 0.8;\r\n    box-shadow: 0 4px 8px 0 rgba(247, 9, 9, 0.753);\r\n  }\r\n\r\n  .fa {\r\n    padding: 10px;\r\n    font-size: 15px;\r\n    width: 10px;\r\n    text-align: center;\r\n    text-decoration: none;\r\n    margin: 2px 2px;\r\n    border-radius: 50%;\r\n  }\r\n  \r\n  .fa:hover {\r\n      opacity: 0.7;\r\n  }\r\n  \r\n  .fa-facebook {\r\n    background: #3B5998;\r\n    color: white;\r\n  }\r\n  \r\n  .fa-twitter {\r\n    background: #55ACEE;\r\n    color: white;\r\n  }\r\n  \r\n  .fa-google {\r\n    background: #dd4b39;\r\n    color: white;\r\n  }\r\n  \r\n  .fa-linkedin {\r\n    background: #007bb5;\r\n    color: white;\r\n  }\r\n  \r\n  @media (max-width:340px) {\r\n    .card {\r\n        width:100%;\r\n        display: block;\r\n        margin:10px 0px;\r\n    }\r\n}", ""]);
 
 // exports
 
@@ -12180,7 +12180,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(8)(content, options);
+var update = __webpack_require__(6)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -12200,7 +12200,7 @@ if(false) {
 /* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(7)(undefined);
+exports = module.exports = __webpack_require__(5)(undefined);
 // imports
 
 
@@ -12306,7 +12306,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(8)(content, options);
+var update = __webpack_require__(6)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -12326,7 +12326,7 @@ if(false) {
 /* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(7)(undefined);
+exports = module.exports = __webpack_require__(5)(undefined);
 // imports
 
 
